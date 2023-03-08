@@ -18,6 +18,10 @@ export const DynamicControl = ({
   minlength,
   maxlength,
 }: DynamicFieldData) => {
+  console.log('🚀 ~ FIELD TYPE:', type)
+  console.log('🚀 ~ FIELD NAME:', name)
+  console.log('🚀 ~ FIELD OPTIONS:', options)
+
   const { register } = useFormContext()
 
   switch (type) {
@@ -49,11 +53,21 @@ export const DynamicControl = ({
           id={name}
           className="form-select w-full"
         >
-          {options.map((o, index) => (
-            <option key={index} value={o.value}>
-              {o.label}
-            </option>
-          ))}
+          {options?.map((o, index) => {
+            if (!o) return null
+            if (typeof o === 'string')
+              return (
+                <option key={index} value={`${o}`}>
+                  {`${o}`}
+                </option>
+              )
+            if (o.label || o.value)
+              return (
+                <option key={index} value={`${o.value}`}>
+                  {`${o.label || o.value}`}
+                </option>
+              )
+          })}
         </select>
       )
     }
@@ -66,11 +80,14 @@ export const DynamicControl = ({
           id={name}
           className="form-multiselect min-w-1/2 w-full"
         >
-          {options.map((o, index) => (
-            <option key={index} value={o.value}>
-              {o.label}
-            </option>
-          ))}
+          {options?.map((o, index) => {
+            if (!o.value) return null
+            return (
+              <option key={index} value={o.value}>
+                {o.label || o.value}
+              </option>
+            )
+          })}
         </select>
       )
     }

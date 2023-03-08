@@ -1,5 +1,3 @@
-'use client'
-
 import { isEditingAtom } from '@/components/Editor/Editor'
 import { capitalCase } from 'change-case'
 import { useAtom } from 'jotai'
@@ -7,6 +5,19 @@ import { ReactNode, useState } from 'react'
 import { FieldError, FormProvider, useForm } from 'react-hook-form'
 import { ControlType, DynamicFieldData } from './dynamic-form'
 import { DynamicControl } from './DynamicControl'
+
+const fieldKeys = [
+  'label',
+  'type',
+  'name',
+  'defaultValue',
+  'placeholder',
+  'options',
+  'config',
+  'prompt',
+  'helperText',
+  'show_if',
+]
 
 export const FormGenerator = ({
   fields,
@@ -21,7 +32,7 @@ export const FormGenerator = ({
   const [isEditing, setValue] = useAtom(isEditingAtom)
 
   if (!fields || isEditing) return null
-
+  console.log('GENERATOR FIELDS', fields)
   return (
     <form
       onSubmit={formMethods.handleSubmit(onSubmit)}
@@ -31,7 +42,7 @@ export const FormGenerator = ({
         {
           // we need to clean up the data
           fields
-            // use the show_if value to determine if we should show the field
+            // if the field has a show_if key, check the value of the key, and if it doesn't match, return null
             .map((d) => {
               if (!d?.show_if) return d
               if (d?.show_if) {
@@ -45,6 +56,43 @@ export const FormGenerator = ({
               }
               return d
             })
+
+            // if a field has options, with at least one item, but no name key, or label, or type select, set the type to select, and the name to the first key that is not in fieldKeys
+            .map((d) => {
+              if (
+                d?.options &&
+                d.options.length > 0 &&
+                (!d?.name || !d?.label) &&
+                d?.type !== 'select'
+              ) {
+                const [key, value] = Object.entries(d).find(
+                  ([k]) => !fieldKeys.includes(k)
+                ) as [string, string]
+
+                if (key) {
+                  return {
+                    ...d,
+                    name: key,
+                    label: capitalCase(key),
+                    type: 'select',
+                  } as DynamicFieldData
+                }
+              }
+              return d
+            })
+
+            // if the field doesn't have a name, use the value of the first key that is not inlcuded in fieldKeys, as the name, and the value of the key as the type
+            .map((d) => {
+              if (d && !d?.name && typeof d === 'object') {
+                const [key, value] = Object.entries(d).find(
+                  ([k]) => !fieldKeys.includes(k)
+                ) as [string, ControlType]
+
+                return { ...d, name: key, type: value } as DynamicFieldData
+              }
+              return d
+            })
+
             // if the field is a string, convert the key to the name and label
             .map((d) =>
               typeof d === 'string' ? { name: d, label: capitalCase(d) } : d

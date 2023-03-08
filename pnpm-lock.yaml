@@ -9,6 +9,7 @@ specifiers:
   '@rvxlab/tailwind-plugin-ios-full-height': ^1.1.0
   '@sendgrid/client': ^7.7.0
   '@tailwindcss/aspect-ratio': ^0.4.2
+  '@tailwindcss/forms': ^0.5.3
   '@tailwindcss/line-clamp': ^0.4.2
   '@tailwindcss/typography': ^0.5.9
   '@tanstack/react-query': ^4.26.1
@@ -72,6 +73,7 @@ dependencies:
   '@rvxlab/tailwind-plugin-ios-full-height': 1.1.0_tailwindcss@3.2.7
   '@sendgrid/client': 7.7.0
   '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.7
+  '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.7
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@tanstack/react-query': 4.26.1_biqbaboplfbrettd7655fr4n2y
@@ -581,6 +583,15 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
+    dev: false
+
+  /@tailwindcss/forms/0.5.3_tailwindcss@3.2.7:
+    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
       tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
     dev: false
 
@@ -3311,6 +3322,11 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
+    dev: false
+
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
     dev: false
 
   /minimatch/3.1.2:
