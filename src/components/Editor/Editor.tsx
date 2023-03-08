@@ -6,7 +6,14 @@ import CryptoJS from 'crypto-js'
 import { atom } from 'jotai'
 import yaml from 'js-yaml'
 import { useSearchParams } from 'next/navigation'
-import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import 'rehype'
 import ErrorBoundary from '../ErrorBoundary'
 import EditorFooter from './EditorFooter'
@@ -18,7 +25,14 @@ export default function Editor() {
   const [hasChecked, setHasChecked] = useState(false)
   const [code, setCode] = useState('')
 
+  const searchParams = useSearchParams()
+  const codeHasChangedRef = useRef('')
   const parsedYaml = useMemo(() => {
+    // if this the first time we are checking, and there is a schema in the address bar, remove it, so we don't get stuck in a loop
+    if (hasChecked && codeHasChangedRef.current !== ('' || code)) {
+      window.history.replaceState(null, '', '/')
+    }
+
     let out
     try {
       out = yaml.load(code)
@@ -26,7 +40,7 @@ export default function Editor() {
       return null
     }
     return JSON.stringify(out, null, 2)
-  }, [code])
+  }, [code, hasChecked])
 
   const shareUrl = useMemo(() => {
     if (!parsedYaml) return null
@@ -50,7 +64,6 @@ export default function Editor() {
     alert(`Form copied to clipboard ${shareUrl}`)
   }, [shareUrl])
 
-  const searchParams = useSearchParams()
   useEffect(() => {
     const hashedSchema = searchParams?.get('schema')
     if (!hashedSchema || parsedYaml) {
@@ -64,6 +77,7 @@ export default function Editor() {
 
     setCode(originalCode)
     setHasChecked(true)
+    codeHasChangedRef.current = originalCode
   }, [])
 
   const fields = useMemo(() => {
