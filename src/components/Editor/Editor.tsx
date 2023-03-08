@@ -19,7 +19,7 @@ import ErrorBoundary from '../ErrorBoundary'
 import EditorFooter from './EditorFooter'
 
 export const isEditingAtom = atom(false) // may not need this
-export const HASH_SALT = 'salt'
+export const HASH_SALT = process.env.NEXT_PUBLIC_HASH_SALT as string
 
 export default function Editor() {
   const [hasChecked, setHasChecked] = useState(false)
@@ -95,42 +95,47 @@ export default function Editor() {
 
   return (
     <>
-      <div className="grid grid-cols-2 flex-1 w-full text-2xl relative z-0 overflow-auto">
-        <CodeEditor
-          value={code}
-          language="markdown"
-          placeholder={`... Please enter a form schema`}
-          onChange={(evn: any) => setCode(evn.target.value)}
-          padding={40}
-          style={{
-            fontSize: '1.5rem',
-            fontFamily:
-              'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-          }}
-        />
-        <div className="p-12">
-          <Suspense
-            fallback={
-              <div className="bg-background-light p-10 rounded flex flex-col gap-2">
-                <p>Loading...</p>
-              </div>
-            }
-          >
-            {!fields ||
-            typeof fields !== ('object' || 'array') ? null : fields &&
-              fields?.length > 0 ? (
-              <ErrorBoundary fallback={<p>Something went wrong</p>}>
-                <FormGenerator
-                  fields={fields}
-                  onSubmit={(data: any) => console.log(data)}
-                />
-              </ErrorBoundary>
-            ) : (
-              <div className="bg-background-light p-10 rounded flex flex-col gap-2">
-                <p>Please check the syntax</p>
-              </div>
-            )}
-          </Suspense>
+      <div className=" flex snap max-w-screen snap-mandatory snap-x md:grid md:grid-cols-2 flex-1 text-2xl relative z-0 overflow-auto">
+        <div className="w-[100vw] md:w-auto flex snap-center flex-shrink-0 relative">
+          <CodeEditor
+            value={code}
+            language="markdown"
+            placeholder={`... Please enter a form schema`}
+            onChange={(evn: any) => setCode(evn.target.value)}
+            padding={40}
+            style={{
+              width: '100%',
+              fontSize: '1.5rem',
+              fontFamily:
+                'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+            }}
+          />
+        </div>
+        <div className="w-[100vw] md:w-auto flex flex-shrink-0 snap-center relative">
+          <div className="m-12">
+            <Suspense
+              fallback={
+                <div className="bg-background-light p-10 rounded flex flex-col gap-2">
+                  <p>Loading...</p>
+                </div>
+              }
+            >
+              {!fields ||
+              typeof fields !== ('object' || 'array') ? null : fields &&
+                fields?.length > 0 ? (
+                <ErrorBoundary fallback={<p>Something went wrong</p>}>
+                  <FormGenerator
+                    fields={fields}
+                    onSubmit={(data: any) => console.log(data)}
+                  />
+                </ErrorBoundary>
+              ) : (
+                <div className="bg-background-light p-10 rounded flex flex-col gap-2">
+                  <p>Please check the syntax</p>
+                </div>
+              )}
+            </Suspense>
+          </div>
         </div>
       </div>
       <EditorFooter onShareClick={fields && onShareClick} />

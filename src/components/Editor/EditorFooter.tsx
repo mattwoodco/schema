@@ -14,7 +14,7 @@ export default function EditorFooter({
 
   return (
     <footer className="border-background-darker border-t-2 bg-background-dark">
-      <div className="max-w-screen-lg mx-auto flex justify-center gap-2 md:gap-5 items-center px-6 flex-col md:flex-row">
+      <div className="max-w-screen-lg mx-auto flex justify-center gap-2 md:gap-5 items-center px-6 ">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="py-6 appearance-none bg-transparent border-none text-current font-semibold flex gap-2 items-center"
