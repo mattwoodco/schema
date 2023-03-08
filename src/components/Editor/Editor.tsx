@@ -6,8 +6,9 @@ import CryptoJS from 'crypto-js'
 import { atom } from 'jotai'
 import yaml from 'js-yaml'
 import { useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
 import 'rehype'
+import ErrorBoundary from '../ErrorBoundary'
 import EditorFooter from './EditorFooter'
 
 export const isEditingAtom = atom(false) // may not need this
@@ -94,17 +95,28 @@ export default function Editor() {
           }}
         />
         <div className="p-12">
-          {!fields || typeof fields !== ('object' || 'array') ? null : fields &&
-            fields?.length > 0 ? (
-            <FormGenerator
-              fields={fields}
-              onSubmit={(data: any) => console.log(data)}
-            />
-          ) : (
-            <div className="bg-background-light p-10 rounded flex flex-col gap-2">
-              <p>Please check the syntax</p>
-            </div>
-          )}
+          <Suspense
+            fallback={
+              <div className="bg-background-light p-10 rounded flex flex-col gap-2">
+                <p>Loading...</p>
+              </div>
+            }
+          >
+            {!fields ||
+            typeof fields !== ('object' || 'array') ? null : fields &&
+              fields?.length > 0 ? (
+              <ErrorBoundary fallback={<p>Something went wrong</p>}>
+                <FormGenerator
+                  fields={fields}
+                  onSubmit={(data: any) => console.log(data)}
+                />
+              </ErrorBoundary>
+            ) : (
+              <div className="bg-background-light p-10 rounded flex flex-col gap-2">
+                <p>Please check the syntax</p>
+              </div>
+            )}
+          </Suspense>
         </div>
       </div>
       <EditorFooter onShareClick={fields && onShareClick} />

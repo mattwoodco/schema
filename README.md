@@ -27,7 +27,7 @@ Form Schema can be used to generate forms in HTML, JSON, Markdown, and Excel. It
 
 ## Examples
 
-**Basic Yes / No**
+**Minimal Yes/No**
 
 ```yaml
 - isChemicalApproved
@@ -41,7 +41,7 @@ Form Schema can be used to generate forms in HTML, JSON, Markdown, and Excel. It
 
 ```yaml
 - name: isChemicalApproved
-  Lable: Approved Chemical
+  label: Approved Chemical
 ```
 
 This snippet defines a simple yes/no field for determining whether a chemical is approved for use.

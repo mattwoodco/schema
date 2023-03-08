@@ -5,7 +5,7 @@ import { capitalCase } from 'change-case'
 import { useAtom } from 'jotai'
 import { ReactNode, useState } from 'react'
 import { FieldError, FormProvider, useForm } from 'react-hook-form'
-import { DynamicFieldData } from './dynamic-form'
+import { ControlType, DynamicFieldData } from './dynamic-form'
 import { DynamicControl } from './DynamicControl'
 
 export const FormGenerator = ({
@@ -48,6 +48,12 @@ export const FormGenerator = ({
             // if the field is a string, convert the key to the name and label
             .map((d) =>
               typeof d === 'string' ? { name: d, label: capitalCase(d) } : d
+            )
+            // if the field has options, but no type, set the type to select
+            .map((d) =>
+              d?.options && !d?.type
+                ? { ...d, type: 'select' as ControlType }
+                : d
             )
             // filter out any fields that don't have a name
             .filter((d) => d && d.name)
