@@ -30,18 +30,26 @@ Form Schema can be used to generate forms in HTML, JSON, Markdown, and Excel. It
 **Basic Yes / No**
 
 ```yaml
-- name: approved
-  prompt: Is this chemical approved for use?
+- isChemicalApproved
+```
+
+1. This fields will be required by default
+1. This most basic form is a single yes/no field.
+1. The field "name" is required. It will be transformed to "title case" and used as the label if none is provided.
+
+**Yes / No with a label**
+
+```yaml
+- name: isChemicalApproved
+  Lable: Approved Chemical
 ```
 
 This snippet defines a simple yes/no field for determining whether a chemical is approved for use.
 
-**Required Yes / No, with optional form label**
+**Optional Yes / No with Prompt**
 
 ```yaml
 - name: chemical_operating_standard
-  required: true
-  label: Operating Standard
   prompt: Is this chemical manufactured in accordance with an operating standard?
 ```
 
@@ -52,12 +60,12 @@ This snippet defines a required yes/no field for determining whether a chemical 
 ```yaml
 - name: chemical_type
   type: dropdown # or radio, checkbox, autocomplete
-  label: Chemical Type
-  prompt: What type of chemical is this?
   options:
     - Organic
     - Inorganic
     - Biological
+  label: Type of Stored Chemical
+  prompt: What type of chemical is this?
 ```
 
 This snippet defines a dropdown field for selecting the type of chemical, with options for organic, inorganic, and biological.

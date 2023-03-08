@@ -1,6 +1,8 @@
 'use client'
+
 import { Dialog } from '@headlessui/react'
-import ReadMeContent from './README.mdx'
+// @ts-ignore
+import ReadMeContent from '../../../README.md'
 
 export const HelpModal = ({
   isOpen,

@@ -7,6 +7,7 @@ const nextConfig = {
     appDir: true,
     mdxRs: true,
     esmExternals: 'loose',
+    externalDir: true,
     fontLoaders: [
       { loader: '@next/font/google', options: { subsets: ['latin'] } },
     ],
@@ -23,7 +24,12 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   swcMinify: true,
-  transpilePackages: ['ag-grid-community', 'ag-grid-react', 'crypto-js'],
+  transpilePackages: [
+    'ag-grid-community',
+    'ag-grid-react',
+    'crypto-js',
+    './README.md',
+  ],
 }
 
 const withMDX = createMDX({
