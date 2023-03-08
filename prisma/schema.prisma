@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Necessary for Next auth
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? // @db.Text
+  access_token      String? // @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? // @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  passwordHash  String?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+
+  role String @default("GUEST") // GUEST, ENGINEER, PARTNER, ADMIN
+
+  preferencesId String? @unique
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model FlowRow {
+  id            String   @id @default(cuid())
+  x             Int?     @default(100)
+  y             Int?     @default(100)
+  label         String   @default("")
+  input         String?
+  output        String?
+  type          String   @default("node") // node, edge
+  name          String   @default("") // Name 
+  percTE        Int?     @default(0) // % TE
+  equipmentType String?  @default("") // Equipment Type
+  manufacturer  String?  @default("") // Manufacturer
+  model         String?  @default("") // Model #
+  modelVersion  String?  @default("") // Model Version
+  yearBuilt     Int?     @default(0) // Year Built
+  size          Int?     @default(0) // Size
+  sizeUnit      Int?     @default(0) // Size Unit of Measure
+  value         Int?     @default(0) // Value
+  latitude      Float?   @default(0) // Latitude
+  longitude     Float?   @default(0) // Longitude
+  geotagId      String?  @default("") // GeotagID
+  isCriteriaMet Boolean? @default(false) // isCriteriaMet Conclusion
+
+  lastModified DateTime? @default(now()) // Last Modified
+  dateCreated  DateTime? @default(now()) // Date Created
+  authors      String?   @default("") // Authors
+  viewers      String?   @default("") // Viewer
+}
+
+model Preferences {
+  id    String  @id @default(cuid())
+  label String?
+
+  // viewMode       String  @default("graph") // graph, table
+  // isTableVisible Boolean @default(true)
+
+  userId String? @unique
+}
+
+model Schema {
+  id            String    @id @default(cuid())
+  name          String
+  content       String    @default("") // JSON
+  lastModified  DateTime? @default(now()) // Last Modified
+  dateCreated   DateTime? @default(now()) // Date Created
+  authors       String?   @default("") // Authors
+  viewers       String?   @default("") // Viewer
+  latitude      Float?    @default(0) // Latitude
+  longitude     Float?    @default(0) // Longitude
+  geotagId      String?   @default("") // GeotagID
+  isCriteriaMet Boolean?  @default(false) // isCriteriaMet Conclusion
+  input         String?
+  output        String?
+  type          String    @default("node") // node, edge
+  riskPerc      Int?      @default(0) // % TE
+}

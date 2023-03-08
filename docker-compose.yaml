@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # simple database for development
+  db:
+    image: postgres:14.2-alpine
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: localdev
+    volumes:
+      - ./data/db:/var/lib/postgresql/data\
+
+  # simple email server for development
+  email:
+    image: rnwood/smtp4dev:v3
+    restart: always
+    ports:
+      - '2525:25'
+      - '4444:80'
+    volumes:
+      - ./data/smptp:/smtp4dev
