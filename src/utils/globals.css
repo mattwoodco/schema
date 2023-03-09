@@ -191,3 +191,7 @@ label {
     @apply bg-background-lighter text-text-light;
   }
 }
+
+.w-tc-editor {
+  background-color: transparent !important;
+}

@@ -60,6 +60,7 @@ export const FormGenerator = ({
             // if a field has options, with at least one item, but no name key, or label, or type select, set the type to select, and the name to the first key that is not in fieldKeys
             .map((d) => {
               if (
+                isIterable(d) &&
                 d?.options &&
                 d.options.length > 0 &&
                 (!d?.name || !d?.label) &&
@@ -175,4 +176,12 @@ export const FormGenerator = ({
       </button>
     </form>
   )
+}
+
+export function isIterable(obj: any) {
+  // checks for null and undefined
+  if (obj == null) {
+    return false
+  }
+  return typeof obj[Symbol.iterator] === 'function'
 }

@@ -44,6 +44,7 @@ export const DynamicControl = ({
           className="form-input w-full"
         />
       )
+    case 'dropdown':
     case 'select': {
       return (
         <select

@@ -6,6 +6,7 @@ export type ControlType =
   | 'toggle'
   | 'file'
   | 'radio'
+  | 'dropdown'
   | 'text'
   | 'select'
   | 'number'

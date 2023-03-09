@@ -28,6 +28,7 @@ const nextConfig = {
     'ag-grid-community',
     'ag-grid-react',
     'crypto-js',
+    'react-hook-form',
     './README.md',
   ],
 }
