@@ -31,7 +31,7 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT,
     "email" TEXT,
-    "emailVerified" TIMESTAMP(3),
+    "emailSchemafied" TIMESTAMP(3),
     "passwordHash" TEXT,
     "image" TEXT,
     "role" TEXT NOT NULL DEFAULT 'GUEST',
@@ -41,7 +41,7 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "VerificationToken" (
+CREATE TABLE "SchemaficationToken" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL
@@ -121,10 +121,10 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "User_preferencesId_key" ON "User"("preferencesId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token");
+CREATE UNIQUE INDEX "SchemaficationToken_token_key" ON "SchemaficationToken"("token");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
+CREATE UNIQUE INDEX "SchemaficationToken_identifier_token_key" ON "SchemaficationToken"("identifier", "token");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Preferences_userId_key" ON "Preferences"("userId");
