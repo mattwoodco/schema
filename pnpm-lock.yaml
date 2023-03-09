@@ -46,7 +46,6 @@ specifiers:
   next-auth: ^4.20.1
   next-themes: ^0.2.1
   nodemailer: ^6.9.1
-  plyr: ^3.7.3
   postcss: ^8.4.21
   prisma: ^4.11.0
   react: 18.2.0
@@ -111,7 +110,6 @@ dependencies:
   next-auth: 4.20.1_nqfews3zxntugbnfuqgpde23my
   next-themes: 0.2.1_nvzgbose6yf6w7ijjprgspqefi
   nodemailer: 6.9.1
-  plyr: 3.7.3
   postcss: 8.4.21
   prisma: 4.11.0
   react: 18.2.0
@@ -1194,7 +1192,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.5
-      caniuse-lite: 1.0.30001462
+      caniuse-lite: 1.0.30001464
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -1268,7 +1266,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001462
+      caniuse-lite: 1.0.30001464
       electron-to-chromium: 1.4.325
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
@@ -1298,8 +1296,8 @@ packages:
     engines: {node: '>= 6'}
     dev: false
 
-  /caniuse-lite/1.0.30001462:
-    resolution: {integrity: sha512-PDd20WuOBPiasZ7KbFnmQRyuLE7cFXW2PVd7dmALzbkUXEP46upAuCDm9eY9vho8fgNMGmbAX92QBZHzcnWIqw==}
+  /caniuse-lite/1.0.30001464:
+    resolution: {integrity: sha512-oww27MtUmusatpRpCGSOneQk2/l5czXANDSFvsc7VuOQ86s3ANhZetpwXNf1zY/zdfP63Xvjz325DAdAoES13g==}
     dev: false
 
   /capital-case/1.0.4:
@@ -1432,11 +1430,6 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /core-js/3.29.0:
-    resolution: {integrity: sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg==}
-    requiresBuild: true
-    dev: false
-
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: false
@@ -1469,10 +1462,6 @@ packages:
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
-    dev: false
-
-  /custom-event-polyfill/1.0.7:
-    resolution: {integrity: sha512-TDDkd5DkaZxZFM8p+1I3yAlvM3rSr1wbrOliG4yJiwinMZN8z/iGL7BTlDkrJcYTmgUSb4ywVCc3ZaUtOtC76w==}
     dev: false
 
   /d3-color/3.1.0:
@@ -2845,10 +2834,6 @@ packages:
     resolution: {integrity: sha512-kPEjMFtZvwL9TaZo0uZ2ml+Ye9HUMmPwbYRJ324qF9tqMejwykJ5ggTyvzmrbBeapCAbk98BSbTeovHEEP1uCA==}
     dev: false
 
-  /loadjs/4.2.0:
-    resolution: {integrity: sha512-AgQGZisAlTPbTEzrHPb6q+NYBMD+DP9uvGSIjSUM5uG+0jG15cb8axWpxuOIqrmQjn6scaaH8JwloiP27b2KXA==}
-    dev: false
-
   /locate-path/6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
@@ -3360,8 +3345,8 @@ packages:
       nodemailer: 6.9.1
       oauth: 0.9.15
       openid-client: 5.4.0
-      preact: 10.13.0
-      preact-render-to-string: 5.2.6_preact@10.13.0
+      preact: 10.13.1
+      preact-render-to-string: 5.2.6_preact@10.13.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       uuid: 8.3.2
@@ -3402,7 +3387,7 @@ packages:
     dependencies:
       '@next/env': 13.2.3
       '@swc/helpers': 0.4.14
-      caniuse-lite: 1.0.30001462
+      caniuse-lite: 1.0.30001464
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -3686,16 +3671,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /plyr/3.7.3:
-    resolution: {integrity: sha512-ORULENBvEvvzMYXRQBALDmEi8P+wZt1Hr/NvHqchu/t7E2xJKNkRYWx0qCA1HETIGZ6zobrOVgqeAUqWimS7fQ==}
-    dependencies:
-      core-js: 3.29.0
-      custom-event-polyfill: 1.0.7
-      loadjs: 4.2.0
-      rangetouch: 2.0.1
-      url-polyfill: 1.1.12
-    dev: false
-
   /postcss-import/14.1.0_postcss@8.4.21:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
@@ -3784,17 +3759,17 @@ packages:
       source-map-js: 1.0.2
     dev: false
 
-  /preact-render-to-string/5.2.6_preact@10.13.0:
+  /preact-render-to-string/5.2.6_preact@10.13.1:
     resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
     peerDependencies:
       preact: '>=10'
     dependencies:
-      preact: 10.13.0
+      preact: 10.13.1
       pretty-format: 3.8.0
     dev: false
 
-  /preact/10.13.0:
-    resolution: {integrity: sha512-ERdIdUpR6doqdaSIh80hvzebHB7O6JxycOhyzAeLEchqOq/4yueslQbfnPwXaNhAYacFTyCclhwkEbOumT0tHw==}
+  /preact/10.13.1:
+    resolution: {integrity: sha512-KyoXVDU5OqTpG9LXlB3+y639JAGzl8JSBXLn1J9HTSB3gbKcuInga7bZnXLlxmK94ntTs1EFeZp0lrja2AuBYQ==}
     dev: false
 
   /prelude-ls/1.2.1:
@@ -3847,10 +3822,6 @@ packages:
   /quick-lru/5.1.1:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
-    dev: false
-
-  /rangetouch/2.0.1:
-    resolution: {integrity: sha512-sln+pNSc8NGaHoLzwNBssFSf/rSYkqeBXzX1AtJlkJiUaVSJSbRAWJk+4omsXkN+EJalzkZhWQ3th1m0FpR5xA==}
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:
@@ -4513,10 +4484,6 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.3.0
-    dev: false
-
-  /url-polyfill/1.1.12:
-    resolution: {integrity: sha512-mYFmBHCapZjtcNHW0MDq9967t+z4Dmg5CJ0KqysK3+ZbyoNOWQHksGCTWwDhxGXllkWlOc10Xfko6v4a3ucM6A==}
     dev: false
 
   /use-sync-external-store/1.2.0_react@18.2.0:
