@@ -135,7 +135,7 @@ label {
   *[type='text'],
   textarea,
   select {
-    @apply bg-transparent outline-none cursor-pointer border-2 py-[.5em] px-[1.5rem] border-current font-semibold rounded;
+    @apply bg-transparent outline-none cursor-pointer border-2 py-[.5em] px-[1.5rem] border-current font-semibold rounded pr-[100px];
   }
 
   option {

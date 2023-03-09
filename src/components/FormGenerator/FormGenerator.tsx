@@ -1,5 +1,6 @@
 import { isEditingAtom } from '@/components/Editor/Editor'
 import { capitalCase } from 'change-case'
+import { unitsOfMeasurements as unitLabels } from 'fixtures/unitsOfMeasurements'
 import { useAtom } from 'jotai'
 import { ReactNode, useState } from 'react'
 import { FieldError, FormProvider, useForm } from 'react-hook-form'
@@ -113,7 +114,7 @@ export const FormGenerator = ({
                   {d.prompt && <span className="text-3xl">{d.prompt}</span>}
                   <label
                     htmlFor={d.name}
-                    className="flex gap-3 items-center cursor-pointer w-full"
+                    className="flex gap-5 items-center cursor-pointer w-full"
                   >
                     {!d?.type ||
                     ![
@@ -136,12 +137,24 @@ export const FormGenerator = ({
                     ].includes(d.type) ? (
                       <>
                         <DynamicControl {...d} />
+                        {d.unit && (
+                          <span className="text-xl -ml-[5em] w-[3em] text-text-default/20 text-right">
+                            {unitLabels[d.unit] as ReactNode}
+                          </span>
+                        )}
                         <span>{d?.label || capitalCase(d?.name)}</span>
                       </>
                     ) : (
                       <div className="flex flex-col gap-2 w-full items-start">
                         <span>{d.label || capitalCase(d.name)}</span>
-                        <DynamicControl {...d} />
+                        <div className="flex gap-5 items-center">
+                          <DynamicControl {...d} />
+                          {d.unit && (
+                            <span className="text-xl -ml-[5em] w-[3em] text-text-default/20 text-right">
+                              {unitLabels[d.unit] as ReactNode}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     )}
                   </label>

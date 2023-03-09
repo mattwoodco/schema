@@ -1,19 +1,19 @@
 **Field Types**
 
-- [ ] Geolocation
-- [ ] Yes / No / UNKNOWN
-- [ ] Temperature
+- [x] Temperature
 - [ ] Numerical Comparison
+- [ ] Radio Button
+- [ ] Yes / No / UNKNOWN
+- [ ] Button to External Link
+- [ ] Two-up Nested
+- [ ] Geolocation
 - [ ] Dynamic collection
 - [ ] Autocomplete with source completion
 - [ ] Dynamic measurement collection
-- [ ] Radio Button
 - [ ] Temperature (w/ UNKNOWN)
 - [ ] Numerical mixture
-- [ ] Two-up Fuel
 - [ ] Note / Content
 - [ ] Confirm Button
-- [ ] Button to External Link
 
 **Schema Features**
 

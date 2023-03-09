@@ -1,3 +1,4 @@
+import { unitsOfMeasurements } from '@/fixtures/unitsOfMeasurements'
 import { RegisterOptions } from 'react-hook-form'
 
 export type ControlType =
@@ -42,4 +43,5 @@ export interface DynamicFieldData extends Partial<HTMLFormElement> {
   show_if?: {
     [key: string]: boolean | string | number
   }
+  unit?: keyof typeof unitsOfMeasurements
 }
