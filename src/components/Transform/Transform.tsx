@@ -143,10 +143,7 @@ export default function Transform({
       loadNodes(initialData.graphData.nodes as any)
       loadEdges(initialData.graphData.edges)
 
-      console.log(
-        '🚀 ~ file: Transform.tsx:140 ~ useEffect ~ initialData.rowData:',
-        initialData.rowData
-      )
+     
       loadRowData(initialData.rowData)
     }
   }, [initialData])

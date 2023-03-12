@@ -19,7 +19,10 @@ async function sendVerificationRequest({
       user: process.env.EMAIL_SERVER_USER,
       pass: process.env.EMAIL_SERVER_PASSWORD,
     },
-    secure: true,
+    secure: process.env.NODE_ENV === 'production' ? true : false,
+    // tls: {
+    //   ciphers: 'SSLv3',
+    // },
   })
 
   await new Promise((resolve, reject) => {
@@ -34,8 +37,6 @@ async function sendVerificationRequest({
       }
     })
   })
-
- 
 
   const html = `<!DOCTYPE html>
   <html lang="en">

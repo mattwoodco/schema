@@ -2,12 +2,13 @@ import { SignOut } from '@/app/(auth)/components'
 import { roleToNumber } from '@/utils/roleToNumber'
 import { capitalCase } from 'change-case'
 import { Session } from 'next-auth'
+import { LogoType } from './svgs/LogoType'
 
 const links = [
   // { href: '/', label: 'Start' },
-  { href: '/latest', label: 'Guests', minRole: 'GUEST' }, // GUESTS
-  { href: '/members', label: 'Members', minRole: 'MEMBER' }, // MEMBERS
-  { href: '/profile', label: 'Artists', minRole: 'PARTNER' }, // PARTNERS
+  { href: '/dashboard', label: 'Guest Dashboard', minRole: 'GUEST' }, // GUESTS
+  { href: '/settings', label: 'Settings', minRole: 'MEMBER' }, // MEMBERS
+  { href: '/partners', label: 'Partners', minRole: 'PARTNER' }, // PARTNERS
   { href: '/admin', label: 'Admins', minRole: 'ADMIN' }, // ADMIN
 ]
 
@@ -55,13 +56,14 @@ export default function AppHeader({
   return (
     <header className="py-10 px-6 md:px-8">
       <div className="max-w-screen-lg mx-auto">
-        <div className="flex items-center">
+        <div className="flex items-center min-w-36">
           <a
             href="/"
-            className="w-36 md:w-64 flex gap-2 pointer-events-auto mr-auto py-5 md:py-10"
+            className="w-36 md:w-64 gap-2 pointer-events-auto mr-auto py-5 md:py-10"
           >
-            <img src="/images/logotype.svg" alt="" />
-            {/* <LogoType /> */}
+            <div className="w-[8rem] md:w-[10rem]">
+              <LogoType />
+            </div>
           </a>
 
           <LinkNav links={links} session={session} />

@@ -35,7 +35,7 @@ export function LoginForm({
   )
 
   return (
-    <div className={`mt-6 ${className}`}>
+    <div className={`mt-6 ${className} w-full`}>
       <AnimatePresence>
         {isLoading ? (
           <div className="fixed w-screen h-screen top-0 left-0 items-center justify-center flex">
@@ -60,11 +60,11 @@ export function LoginForm({
           >
             <motion.div
               variants={animatedListItem}
-              className="flex flex-col max-w-[30vw] gap-5"
+              className="flex flex-col max-w-[60vw] lg:max-w-[30vw] gap-5"
             >
               <label
                 // notice this this "1vw"
-                className="text-[1vw] px-4"
+                className="text-3xl lg:text-[1.5vw] px-4"
               >
                 Email Address
               </label>
@@ -72,7 +72,7 @@ export function LoginForm({
                 {...register('email')}
                 placeholder="jane@doe.com"
                 // notice this this "3vw"
-                className="text-[1.75vw] px-[1.4em] rounded"
+                className="text-2xl xl:text-[1.75vw] px-[1.4em] rounded placeholder:text-current"
               />
             </motion.div>
 
@@ -80,7 +80,7 @@ export function LoginForm({
               <button
                 type="submit"
                 // notice this this "2vw"
-                className="text-[2vw] px-[1.2em] py-[.5em] leading-none"
+                className="text-2xl xl:text-[2vw] px-[1.2em] py-[.5em] leading-none"
               >
                 Sign in
               </button>

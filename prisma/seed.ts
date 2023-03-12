@@ -67,7 +67,7 @@ async function seedAdmins() {
   }
 }
 // async function seedFlowTableRows() {
-//   const defaultTable: any = seedNodes
+//   const defaultTable: any = seedNodes 
 //   for (const row of defaultTable) {
 //     await prisma.flowRow.create({
 //       data: {
