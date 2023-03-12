@@ -1,5 +1,5 @@
 export const metadata = {
-  title: process.env.APP_NAME,
+  title: process.env.NEXT_PUBLIC_APP_NAME,
   description: 'Speak with your documents',
 }
 

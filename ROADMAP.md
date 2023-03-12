@@ -19,7 +19,7 @@
 
 - [ ] Nested
 - [ ] Large, Composable Forms
-- [ ] Error Handling
+- [ ] Error Handlin
 - [ ] Metadata
 - [ ] UUIDs for each field
 

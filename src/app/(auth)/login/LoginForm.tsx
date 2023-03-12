@@ -1,10 +1,10 @@
 'use client'
 
+import { Spinner } from '@/components/svgs/Spinner'
 import { animatedList, animatedListItem } from '@/utils/animations'
 import { AnimatePresence, motion } from 'framer-motion'
 import { User } from 'next-auth'
 import { getCsrfToken, signIn } from 'next-auth/react'
-import Image from 'next/image'
 import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -38,20 +38,17 @@ export function LoginForm({
     <div className={`mt-6 ${className}`}>
       <AnimatePresence>
         {isLoading ? (
-          <motion.div
-            variants={animatedListItem}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
-            className="flex flex-col max-w-[30vw] gap-5"
-          >
-            <Image
-              src="/images/spinner.svg"
-              alt="loading"
-              width="200"
-              height="200"
-            />
-          </motion.div>
+          <div className="fixed w-screen h-screen top-0 left-0 items-center justify-center flex">
+            <motion.div
+              variants={animatedListItem}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              className="flex flex-col max-w-[30vw] gap-5 w-20 h-20 md:w-[6vw] md:h-[6vw]"
+            >
+              <Spinner />
+            </motion.div>
+          </div>
         ) : (
           <motion.form
             className="space-y-6"
@@ -75,7 +72,7 @@ export function LoginForm({
                 {...register('email')}
                 placeholder="jane@doe.com"
                 // notice this this "3vw"
-                className="text-[3vw] p-5 appearance-none border-0  rounded"
+                className="text-[1.75vw] px-[1.4em] rounded"
               />
             </motion.div>
 
@@ -83,7 +80,7 @@ export function LoginForm({
               <button
                 type="submit"
                 // notice this this "2vw"
-                className="text-[2vw] px-[1.2em] py-[.5em]  rounded leading-none"
+                className="text-[2vw] px-[1.2em] py-[.5em] leading-none"
               >
                 Sign in
               </button>

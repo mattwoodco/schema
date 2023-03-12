@@ -3,39 +3,20 @@
 import { animatedList, animatedListItem } from '@/utils/animations'
 import { motion } from 'framer-motion'
 
-const VerifyMessage = () => {
+export default function Verify() {
   return (
-    <div className="mt-6">
+    <div className="grid grid-cols-2 w-full h-full items-center">
       <motion.div
-        className="space-y-6"
+        className="space-y-6 mt-6 col-start-2 flex flex-col text-xl"
         variants={animatedList}
         initial="hidden"
         animate="show"
         exit="hidden"
       >
-        <motion.div variants={animatedListItem}>
-          <h2 className="mt-6 text-3xl tracking-tight ">
-            An Email has been sent to your inbox
-          </h2>
+        <motion.div variants={animatedListItem} className="text-info">
+          A login link has been sent to your inbox
         </motion.div>
       </motion.div>
-    </div>
-  )
-}
-
-export default function Verify() {
-  return (
-    <div className="flex h-full min-h-full">
-      <div className="relative hidden w-0 flex-1 lg:block">
-        <div className="h-full w-full bg-cover bg-bottom bg-unsplash-login-lg" />
-      </div>
-      <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-32 xl:px-24">
-        <div className="mx-auto w-full max-w-sm lg:w-96">
-          <div className="mt-8">
-            <VerifyMessage />
-          </div>
-        </div>
-      </div>
     </div>
   )
 }

@@ -8,6 +8,14 @@ import { EmailProvider } from '../../../lib/auth/EmailProvider'
 
 import { createUserWithEmail, getUserByEmail } from '../../../models/User'
 
+const testEmail = (email: string) => {
+  if (email.endsWith(`@${process.env.ALLOWED_EMAIL_DOMAIN}`)) {
+    return true
+  } else {
+    return false
+  }
+}
+
 export type NextAuthRequest = NextApiRequest &
   (IncomingMessage & { cookies: Partial<{ [key: string]: string }> })
 
@@ -38,6 +46,14 @@ NextAuthOptions => {
         // Handle adding more data to the JWT token
         return token
       },
+      async session({ session, token }: { session: any; token: any }) {
+        // Handle adding more data to the session
+        if (token?.user) {
+          session.user = token?.user
+        }
+
+        return session
+      },
       async signIn({ user, profile, account, ...rest }) {
         try {
           const userEmail =
@@ -46,15 +62,7 @@ NextAuthOptions => {
             user?.email ||
             profile?.email
 
-          const testEmail = (email: string) => {
-            if (email.endsWith(`@${process.env.ALLOWED_EMAIL_DOMAIN}`)) {
-              return true
-            } else {
-              return false
-            }
-          }
-
-          if (!userEmail || !testEmail(userEmail)) {
+          if (!userEmail) {
             throw new Error('Email not found')
           }
 
@@ -64,7 +72,14 @@ NextAuthOptions => {
             log(`Existing user: ${JSON.stringify(existingUser, null, 2)}`)
             return true
           }
+          // If there's no user, check if their email is allowed
+          if (!existingUser) {
+            if (!testEmail(userEmail)) {
+              throw new Error('Email not allowed')
+            }
+          }
 
+          // If their email is allowed, create a new user
           const newUser = await createUserWithEmail(userEmail)
           if (newUser) {
             log(`New user: ${JSON.stringify(newUser, null, 2)}`)

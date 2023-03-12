@@ -1,30 +1,32 @@
 'use client'
 
 import { useTheme } from 'next-themes'
+import { useMemo } from 'react'
 
 const Spinner = (props: {
   className?: string
   style?: React.CSSProperties
 }) => {
-  const theme = useTheme()
+  const { theme } = useTheme()
+  const color = useMemo(
+    () => (theme === 'light' ? 'rgba(0,0,0,.25)' : 'rgba(255,255,255,.25)'),
+    [theme]
+  )
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
       viewBox="0 0 38 38"
+      fill="none"
       key={`theme-${theme}`}
       className="w-full"
       {...props}
     >
       <defs>
         <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
-          <stop stop-color="currentColor" stop-opacity="0" offset="0%" />
-          <stop
-            stop-color="currentColor"
-            stop-opacity=".631"
-            offset="63.146%"
-          />
-          <stop stop-color="currentColor" offset="100%" />
+          <stop stopColor={color} stopOpacity="0" offset="0%" />
+          <stop stopColor={color} stopOpacity=".631" offset="63.146%" />
+          <stop stopColor={color} offset="100%" />
         </linearGradient>
       </defs>
       <g fill="none" fill-rule="evenodd">
@@ -44,7 +46,7 @@ const Spinner = (props: {
               repeatCount="indefinite"
             />
           </path>
-          <circle fill="currentColor" cx="36" cy="18" r="1">
+          <circle fill={color} cx="36" cy="18" r="1">
             <animateTransform
               attributeName="transform"
               type="rotate"
